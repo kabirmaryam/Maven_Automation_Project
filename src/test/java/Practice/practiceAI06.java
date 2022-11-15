@@ -30,11 +30,22 @@ public class practiceAI06 extends ReusableAnnotations {
         logger = reports.startTest("tc001_calculateRateAndPaymentPart1");
 
         //navigate to pnc homepage
-        driver.navigate().to("https://www.pnc.com/en/personal-banking.html");
+        driver.navigate().to("https://www.pnc.com/en/personal-banking/borrowing/private-student-loans/refinance-student-loans.html?lnksrc=topnav");
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
+        //define JavascriptExecutor
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        //scroll down to 800 pixels
+        jse.executeScript("scroll(0,3600)");
 
-        //click on Products & Services
+        Thread.sleep(6000);
+
+        ReusableActionsLoggers.clearAction(driver, "//*[@class = 'form-control lf-step-field-number ng-valid ng-dirty ng-valid-parse ng-valid-required ng-touched']", logger, "Clear Loan Balance");
+        ReusableActionsLoggers.sendKeysAction(driver, "//*[@class = 'form-control lf-step-field-number ng-valid ng-dirty ng-valid-parse ng-valid-required ng-touched']", "53400", logger, "Enter Loan Balance");
+
+
+
+        /*//click on Products & Services
         ReusableActionsLoggers.clickActionByIndex(driver, "//*[@class = 'cmp-listpro__item-text']", 1, logger, "Products & Services");
         //click on Student Loans Refinancing
         ReusableActionsLoggers.clickActionByIndex(driver, "//*[@class = 'cmp-listpro__item-text']", 19, logger, "Student Loans Refinancing");
@@ -45,10 +56,34 @@ public class practiceAI06 extends ReusableAnnotations {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         //scroll down to 800 pixels
         jse.executeScript("scroll(0,3600)");
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         //ReusableActionsLoggers.mouseHoverByIndex(driver, "//*[@class = 'lf-step-field-box-label ng-binding']", 1, logger, "hover");
         //ReusableActionsLoggers.clickActionByIndex(driver, "//*[@class = 'lf-step-field-box-label ng-binding']", 1, logger, "Undergraduate Degree");
-        ReusableActionsLoggers.clickAction(driver, "//*[@id = 'lf_HighestDegree__4']", logger, "grad");
+        //ReusableActionsLoggers.clickActionByIndex(driver, "//*[@class = 'lf-step-field-box']", 1,  logger, "undergrad");
+
+        //ReusableActionsLoggers.clickAction(driver, "((//*[@class='lf-step-field-box-container lf-step-field-box-'])[2])", logger, "Undergrad");
         Thread.sleep(5000);
-    }
+
+        //clear and enter total student loan balances
+        //ReusableActionsLoggers.clearAction(driver, "//*[@id = 'lf_RefiStudentLoanBalances']", logger, "Clear Loan Balance");
+        //ReusableActionsLoggers.sendKeysAction(driver, "//*[@id = 'lf_RefiStudentLoanBalances']", "53400", logger, "Enter Loan Balance");
+
+        ReusableActionsLoggers.clearAction(driver, "//*[@class = 'form-control lf-step-field-number ng-valid ng-dirty ng-valid-parse ng-valid-required ng-touched']", logger, "Clear Loan Balance");
+        ReusableActionsLoggers.sendKeysAction(driver, "//*[@class = 'form-control lf-step-field-number ng-valid ng-dirty ng-valid-parse ng-valid-required ng-touched']", "53400", logger, "Enter Loan Balance");
+
+        //clear and enter current monthly payments
+        ReusableActionsLoggers.clearAction(driver, "//*[@id = 'lf_TotalStudentLoanPayments']", logger, "Clear Current Monthly Payments");
+        ReusableActionsLoggers.sendKeysAction(driver, "//*[@id = 'lf_RefiStudentLoanBalances']", "1500", logger, "Enter Current Monthly Payments");
+        //clear and enter interest rate
+        ReusableActionsLoggers.clearAction(driver, "//*[@id = 'lf_EffIntRateStudentLoans']", logger, "Clear Interest Rate");
+        ReusableActionsLoggers.sendKeysAction(driver, "//*[@id = 'lf_EffIntRateStudentLoans']", "5.05", logger, "Enter Interest Rate");
+        //click continue
+        //ReusableActionsLoggers.clickAction(driver, "//*[@class = 'btn btn-primary lf-step-btn ng-binding ng-scope']", logger, "Continue Button");*/
+
+
+
+    }//end of test case 1
+
 }
+
+

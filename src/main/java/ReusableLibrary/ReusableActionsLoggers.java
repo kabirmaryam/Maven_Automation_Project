@@ -100,6 +100,18 @@ public class ReusableActionsLoggers {
         }
     }//end of sendKeysAction
 
+    public static void sendKeysActionByIndex(WebDriver driver, String xpath, String userInput, int index, ExtentTest logger, String elementName) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+            element.sendKeys(userInput);
+            logger.log(LogStatus.PASS, "Successfully click on element: " + elementName);
+        } catch (Exception e) {
+            System.out.println("Unable to send keys to : " + elementName + " for reason: " + e);
+            logger.log(LogStatus.FAIL, "Successfully click on element: " + elementName + " for reason: " + e);
+        }
+    }//end of sendKeysActionByIndex
+
     public static String getTextAction(WebDriver driver, String xpath, ExtentTest logger, String elementName) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         String textOutput = "";
@@ -200,6 +212,18 @@ public class ReusableActionsLoggers {
             logger.log(LogStatus.FAIL, "Successfully cleared element: " + elementName + " for reason: " + e);
         }
     }//end of clearAction
+
+    public static void clearActionByIndex (WebDriver driver, String xpath, int index, ExtentTest logger, String elementName) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        try {
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+            element.clear();
+            logger.log(LogStatus.PASS, "Successfully click on element: " + elementName);
+        } catch (Exception e) {
+            System.out.println("Unable to clear element: " + elementName + " for reason: " + e);
+            logger.log(LogStatus.FAIL, "Successfully cleared element: " + elementName + " for reason: " + e);
+        }
+    }//end of clearActionByIndex
 
     public static void compareExpectedAndActualText(String expectedText, String actualText, ExtentTest logger) {
         if (actualText.equals(expectedText)){
